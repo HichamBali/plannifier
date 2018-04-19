@@ -10,6 +10,7 @@
 $nomEtu = $_POST['nomEtu'];
 $prenomEtu = $_POST['prenomEtu'];
 $adresseEtu = $_POST['adresseEtu'];
+
 $anneeEtu = $_POST['anneeEtu'];
 $specialiteEtu = $_POST['specialiteEtu'];
 
