@@ -202,10 +202,10 @@ $liste->execute();
         if(confirm("Voulez vous supprimer ce theme?")){
 
             $.ajax({
-                url:'suppCons.php',
+                url:'supprimerTheme.php',
                 type: 'POST',
                 data:{
-                    ids:id
+                    id:id
                 },
                 success: function(result){
                     if(result.trim() == "success")
