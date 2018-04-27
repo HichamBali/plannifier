@@ -212,7 +212,7 @@ div#signin-agile input[type="text"],div#signin-agile input[type="password"],div#
 }
 div#signin-agile input[type="text"]:focus,div#signin-agile input[type="password"]:focus,div#signup-agile input[type="text"]:focus,div#signup-agile input[type="email"]:focus,div#signup-agile input[type="password"]:focus   {
 	background-color:#e5f3d1;
-	border-color:r#a0da4f;
+	border-color:#a0da4f;
 }
 /*--checkbox--*/
 div#signin-agile input[type="checkbox"] {

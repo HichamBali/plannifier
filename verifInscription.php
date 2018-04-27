@@ -10,6 +10,7 @@
 $nomEtu = $_POST['nomEtu'];
 $prenomEtu = $_POST['prenomEtu'];
 $adresseEtu = $_POST['adresseEtu'];
+
 $anneeEtu = $_POST['anneeEtu'];
 $specialiteEtu = $_POST['specialiteEtu'];
 
@@ -19,13 +20,18 @@ $etudiant  = 'etudiant';
 
 try {
 
-    $connexionDB = new PDO('mysql:host=localhost;dbname=plan&go', 'root', '');
+    $connexionDB = new PDO('mysql:host=localhost;dbname=plan', 'root', '');
+    $connexionDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $insert = $connexionDB->query("INSERT INTO etudiants(nomEtu, prenomEtu, adresseEtu, anneeEtu, specialiteEtu)
-      VALUES ('" . $nomEtu . "','" . $prenomEtu . "','" . $adresseEtu . "','" . $anneeEtu . "','" . $specialiteEtu . "')");
+    $insert = "INSERT INTO users(username, password, typeUser)
+      VALUES ('" . $username . "','" . $password . "', '". $etudiant ."')";
+    $connexionDB->exec($insert);
+    $idUser = $connexionDB->lastInsertId();
 
-    $insert = $connexionDB->query("INSERT INTO users(username, password, typeUser)
-      VALUES ('" . $username . "','" . $password . "', '". $etudiant ."')");
+    $insert = "INSERT INTO etudiants(nomEtu, prenomEtu, adresseEtu, anneeEtu, specialiteEtu, idUser)
+      VALUES ('" . $nomEtu . "','" . $prenomEtu . "','" . $adresseEtu . "','" . $anneeEtu . "','" . $specialiteEtu . "','" . $idUser . "')";
+    $connexionDB->exec($insert);
+
 
     header("location:homeEtudiant.php");
 } catch
