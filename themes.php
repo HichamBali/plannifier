@@ -19,20 +19,20 @@ $liste->execute();
     <title>Details</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
 
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../vendor/devicons/css/devicons.min.css" rel="stylesheet">
-    <link href="../vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/resume.min.css" rel="stylesheet">
+    <link href="css/resume.min.css" rel="stylesheet">
     <!--<script src="https://code.jquery.com/jquery-3.2.1.js"></script> c'est le même-->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
-    <script src="../js/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
 
 
 </head>
@@ -152,10 +152,10 @@ $liste->execute();
 
 <!-- Bootstrap core JavaScript -->
 
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Plugin JavaScript -->
-<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for this template -->
 <script src="js/resume.min.js"></script>
