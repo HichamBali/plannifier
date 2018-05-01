@@ -5,6 +5,17 @@
  * Date: 20/04/2018
  * Time: 00:36
  */
+/*
+session_start();
+
+if(isset($_GET['idEtudiant']))
+{$idp=$_GET['idEtudiant'];
+    $_SESSION['idEtudiant']=$idp;
+}
+else{
+    $idp=$_SESSION['idEtudiant'];
+}
+*/
 
 ?>
 
@@ -25,11 +36,12 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!--<link rel="stylesheet" href="/resources/demos/style.css">--> <!--là on ajoute du css à nos items..-->
     <style>
         #sortable1, #sortable2 {
-            border: 1px solid #eee;
+            border: 1px solid #351F39;
             width: 330px;
             min-height: 20px;
             list-style-type: none;
@@ -37,6 +49,7 @@
             padding: 5px 0 0 0;
             float: left;
             margin-right: 100px;
+            background-color:  #351F39;
         }
 
         #sortable1 li, #sortable2 li {
@@ -44,7 +57,26 @@
             padding: 5px;
             font-size: 1.2em;
             width: 300px;
+
+
         }
+        .ui-sortable li{
+            background-color:#6B8E23;
+            color: white;
+        }
+
+        /*fond de la page*/
+        body {
+            background:#F4E8C1;
+            font-family: 'Open Sans', sans-serif;
+        }
+        button {
+            /* couleur bouton*/
+            background-color: #6B8E23;
+            color: #351F39;
+
+        }
+
 
     </style>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -76,19 +108,52 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "ajouterChoix.php",
+                url: "ajouterChoix.php", // ajouter a la bdd
                 data: {lists: datass},
                 success: function(result){
                     if(result.trim()=="success")
-                        alert("add success");
+                        alert("Votre fiche de voeux est bien enregistrée, Bon courage!");
+                    $('#btnId').attr('disabled', 'true');// btn cliquable qu'une seule fois
+                    document.getElementById('btnId').style.backgroundColor = "gray"; // changer couleur btn
+                    document.getElementById('btnId').style.color = "white";
 
                 }
             });
         }
+
     </script>
 </head>
 <body>
-<h3 align="left">Thèmes à choisir</h3>
+ <!-------------------------NAVBAR // à voir----------------------->
+<div class="navbar-nav navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand"><img src="images/plan.png" id="plan"> </a>
+        <a href="homeEtudiant.php" role="button"><i class="fa fa-level-up"></i> Retour</a> <!--pour le retour au home-->
+        <a href="logOut.php" role="button"><i class="fa fa-sign-out"></i> LogOut</a><!--pour déconnecter-->
+        </div>
+    </div>
+</div>
+ <!-----------------------Afficher liste des thèmes avec details-------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <!--------------Remplir fiche de voeux------------------>
+
+
+<h3 align="left">Liste des thèmes à choisir</h3>
 <ul id="sortable1">
 
     <?php                    // on récupère les thèmes validés de la bdd
@@ -112,20 +177,13 @@
         $row_count++;
     }
     ?>
-
-
-
-
-
 </ul>
-
-
-
-<h3 align="center">Glissez vos choix ici</h3>
 
 <ul id="sortable2" class="connectedSortable">
+    <h3 align="center" style="color: white">Glissez et ordonnez vos choix ici</h3>
 </ul>
-<button class="save" onclick="savingdata()">Valider</button>
+<button class="save" id= "btnId" onclick="savingdata()" style="color: white">Valider ma fiche de voeux</button>
+
 
 </body>
 </html>

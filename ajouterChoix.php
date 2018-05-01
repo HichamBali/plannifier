@@ -6,6 +6,10 @@
  * Time: 18:38
  */
 
+
+
+// ajouter à la bdd
+
 try {
     $bdd = new PDO('mysql:host=localhost;dbname=plan;charset=utf8', 'root', '');
 
