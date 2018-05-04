@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(empty($_SESSION['username']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    header('Location:login.html');
+    exit();
+}
+?>
 <!doctype html>
 <html><head>
     <meta charset="utf-8">

@@ -10,6 +10,9 @@
 
 // ajouter à la bdd
 
+session_start();
+$idEtudiant = $_SESSION['idE'];
+
 try {
     $bdd = new PDO('mysql:host=localhost;dbname=plan;charset=utf8', 'root', '');
 
@@ -19,6 +22,10 @@ try {
 }
 
 
+
+$insert = $bdd->query("INSERT INTO fichevoeuxs (idEtudiant) VALUE ($idEtudiant)");
+$idFicheVoeux = $bdd->lastInsertId();
+
 $list = $_POST['lists'];
 $recu= array();
 
@@ -26,11 +33,13 @@ $lists = parse_str($list,$recu);
 $a=implode(',',$recu['item']);
 $valore=explode(",","$a");
 
+
+
 for($i=1 ; $i<=4;$i++){
     $p=$i-1;
     $k=intval("$valore[$p]");
 
-    $r = $bdd->prepare("INSERT INTO voeuxs(idFicheVoeux,idTheme,position) VALUES (1,$k,$i)");
+    $r = $bdd->prepare("INSERT INTO voeuxs(idFicheVoeux,idTheme,position) VALUES ($idFicheVoeux,$k,$i)");
     if(!$r->execute())echo json_encode("error");
 
 }

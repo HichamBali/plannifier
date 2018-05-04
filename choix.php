@@ -5,24 +5,23 @@
  * Date: 20/04/2018
  * Time: 00:36
  */
-/*
+
 session_start();
 
-if(isset($_GET['idEtudiant']))
-{$idp=$_GET['idEtudiant'];
-    $_SESSION['idEtudiant']=$idp;
+if(isset($_GET['idE']))
+{$idE=$_GET['idE'];
+    $_SESSION['idE']=$idE;
 }
 else{
-    $idp=$_SESSION['idEtudiant'];
+    $idE=$_SESSION['idE'];
 }
-*/
+
 
 ?>
 
 <!doctype html>
 <html lang="fr">
 <head>
-
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,6 +39,7 @@ else{
 
     <!--<link rel="stylesheet" href="/resources/demos/style.css">--> <!--là on ajoute du css à nos items..-->
     <style>
+        
         #sortable1, #sortable2 {
             border: 1px solid #351F39;
             width: 330px;
@@ -61,7 +61,8 @@ else{
 
         }
         .ui-sortable li{
-            background-color:#6B8E23;
+            background-color: #2b542c;
+
             color: white;
         }
 
@@ -72,8 +73,8 @@ else{
         }
         button {
             /* couleur bouton*/
-            background-color: #6B8E23;
-            color: #351F39;
+            background-color: #2b542c;
+
 
         }
 
@@ -89,7 +90,8 @@ else{
 
         $(function () {
             $( "#sortable1, #sortable2" ).sortable({
-                connectWith: ".connectedSortable"
+                connectWith: ".connectedSortable",
+
             }).disableSelection();
 
             $("#sortable2").on("sortreceive sortupdate", function (event, ui) {
@@ -103,8 +105,12 @@ else{
 
                 }
                 else $(ui.sender).sortable('cancel');
+
+
             });
+
         });
+
     </script>
     <!-- Enregistrement data avec ajax et json -->
     <script>
@@ -126,15 +132,24 @@ else{
 
     </script>
 </head>
+
+
+
+
+
+
+
 <body>
-<!-------------------------NAVBAR ----------------------->
+<!--------------------------------------NAVBAR------------------------------------------>
 <div class="navbar-nav navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand"><img src="images/plan.png" id="plan"> </a>
-            <a href="homeEtudiant.php" role="button"><i class="fa fa-level-up"></i> Retour</a> <!--pour le retour au home-->
-            <a href="logOut.php" role="button"><i class="fa fa-sign-out"></i> LogOut</a><!--pour se déconnecter-->
+
+            <a class="navbar-brand" href="#"><img src="images/plan.png" id="plan"> </a>
+            <a href="logOut.php" class="navbar-brand pull-right" style="color: #3c763d"><strong class="fa fa-power-off"> Déconnexion</strong></a>
+            <a href="homeEtudiant.php"class="navbar-brand pull-right" style="color: #3c763d"><strong class="fa fa-arrow-circle-o-left"> Retour</strong></a>
         </div>
+
     </div>
 </div>
 
@@ -143,6 +158,7 @@ else{
 
 <h2 align="center" style="color: #2b542c"><u> Liste des thèmes proposés </u> </h2> <!--titre-->
 
+<br/><br/>
 
 <div class="table-responsive" id="table">
 
@@ -152,8 +168,8 @@ else{
         <thead>
         <tr>
             <th id="idINFIRMIER" role="gridcell" style="display:none">ID</th>
-            <th id="nom_i" role="gridcell">Thème</th>
-            <th id="prenom_i" role="gridcell">Déscription</th>
+            <th id="nom_i" role="gridcell" width="20%">Thème</th>
+            <th id="prenom_i" role="gridcell" width="50%">Déscription</th>
             <th id="adresse_i" role="gridcell">Encadreur</th>
 
 
@@ -190,19 +206,37 @@ else{
     </table>
 </div>
 <!---------------------------texte Indication---------------------->
-<br/><br/>
-<h2 align="center" style="color: #2b542c"><u> Remplir ma fiche de voeux</u></h2>
-<br/>
-<h4 style="color: #953b39" align="center">Indication:</h4>
-<p style="color: #2b542c" align="center">
-    Pour faire remplir votre fiche de voeux
-    <br/> 1- faites glisser les les thèmes de la liste 1 au liste 2.
-    <br/>  2- Ordonner vox choix dan la liste 2.
-    <br/>  3- Cliquer sur envoyer ma fiche de voeux.
-    <br/> cette dernière étape ce fait qu'une seule fois, soyez sure de vox choix et ses classement. BON COURAGE!</p><br/>
 
+<div class="row justify-content-center">
+<div class="col-8">
+
+
+
+
+    <br/><br/>
+    <h2 align="center" style="color: #2b542c"><u> Remplir ma fiche de voeux</u></h2>
+    <br/>
+    <br/>
+    <div style="padding:3px; border:2px dashed #c0c0c0;">
+        <strong style="color: #953b39">Indication:</strong>:  Pour faire remplir votre fiche de voeux
+        <br/>  1- faites glisser les les thèmes de la liste 1 au liste 2.
+        <br/>  2- Ordonner vox choix dan la liste 2.
+        <br/>  3- Cliquer sur envoyer ma fiche de voeux.
+        <br/> La dernière étape ce fait qu'une seule fois, soyez sure de vox choix et ses classement. BON COURAGE!
+    </div>
+
+    <br/><br/><br/>
+
+
+
+
+</div>
+</div>
 
 <!--------------Remplir fiche de voeux------------------>
+<div class="row justify-content-center">
+    <div class="col-8">
+
 <div>
     <ul id="sortable1">
 
@@ -231,9 +265,18 @@ else{
     <ul id="sortable2" class="connectedSortable">
         <h3 align="center" style="color: white">Glissez et ordonnez vos choix ici</h3>
     </ul>
-    <button class="save" id= "btnId" onclick="savingdata()" style="color: white">Valider ma fiche de voeux</button>
 
 </div>
+
+
+    </div>
+</div>
+<div class="row justify-content-center">
+<div class="col-8" align="center">
+    <button class="save" id= "btnId" onclick="savingdata()" style="color: white">Valider ma fiche de voeux</button>
+</div>
+</body>
+
 
 </body>
 </html>
