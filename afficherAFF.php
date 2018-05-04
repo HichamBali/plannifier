@@ -1,7 +1,7 @@
 <?php
 try {
     //connexion à la base de donnée
-    $connexionDB = new PDO("mysql:host=localhost;dbname=plannings", "root", "AHENr5Jfovmf");
+    $connexionDB = new PDO("mysql:host=localhost;dbname=plan&go", "root", "AHENr5Jfovmf");
     $connexionDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 } catch
