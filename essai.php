@@ -57,13 +57,13 @@ $idEtudiant = $_SESSION['idEtudiant'];
 
     <style type="text/css">
         body {
-       //  background-color: #C3654B ;
-         //   background-color:#6F9130 ;
+        //  background-color: #C3654B ;
+        //   background-color:#6F9130 ;
 
             padding-top: 60px;
         }
         .navbar-nav{
-         //   background-color: #C3654B ;
+        //   background-color: #C3654B ;
             background-color: #C3654B ;
 
         }
@@ -79,37 +79,6 @@ $idEtudiant = $_SESSION['idEtudiant'];
     <link href="http://fonts.googleapis.com/css?family=Raleway:400,300" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            $("#btn-blog-next").click(function () {
-                $('#blogCarousel').carousel('next')
-            });
-            $("#btn-blog-prev").click(function () {
-                $('#blogCarousel').carousel('prev')
-            });
-
-            $("#btn-client-next").click(function () {
-                $('#clientCarousel').carousel('next')
-            });
-            $("#btn-client-prev").click(function () {
-                $('#clientCarousel').carousel('prev')
-            });
-
-        });
-
-        $(window).load(function () {
-
-            $('.flexslider').flexslider({
-                animation: "slide",
-                slideshow: true,
-                start: function (slider) {
-                    $('body').removeClass('loading');
-                }
-            });
-        });
-
-    </script>
 </head>
 <body>
 
@@ -128,63 +97,45 @@ $idEtudiant = $_SESSION['idEtudiant'];
 
         <div class="navbar-collapse my-2 my-lg-0">
             <a href="logOut.php" class="navbar-brand pull-right" ><strong class="fa fa-power-off"> Déconnexion</strong></a>
+            <a href="homeEtudiant.php"class="navbar-brand pull-right" ><strong class="fa fa-arrow-circle-o-left"> Retour</strong></a>
         </div>  <!--/.nav-collapse -->
     </div>
 </div>
 
+
 <div class="container">
-<br/><br/> <br/><br/><br/><br/><br/><br/><br/>
-    <!-- FIRST ROW OF BLOCKS -->
-    <div class="row">
+<div class="row justify-content-center">
+    <div class="col-3">
 
-        <!-- USER PROFILE BLOCK -->
-        <!--INFORMATION UTILISATEURS-->
-        <div class="col-sm-3 col-lg-3">
-            <div class="dash-unit">
-                <dtitle>Informations binôme</dtitle>
 
-                <div class="thumbnail">
-                    <a class="navbar-brand" href="info.php"><img src="images/info.png" id="info"  class="img-circle"> </a>
-                </div>
 
-            </div>
-        </div>
-        <!---------------------------AVANCEMENT PROJET----------------------->
-        <!-- DONUT CHART BLOCK -->
-        <div class="col-sm-3 col-lg-3">
-            <div class="dash-unit">
-                <dtitle>Taux Avancement du projet</dtitle>
-                <br/>  <br/>  <br/>
-                <div id="load"></div>
 
-                <h2>45%</h2>
-                <br/>
+        <br/><br/>
+        <br/>
+        <br/>
+        <div style="padding:3px; border:2px dashed #c0c0c0;">
+            <form method="post" action="ajoutBinome.php">
 
-            </div>
+                <p> Nom : </p>
+                <p> Prénom : </p>
+                <p> Nom binome : </p>
+                <p> Prénom binome : </p>
+                <p> Moyenne : </p>
+                <p> Projet: </p>
+                <p> Encadreur : </p>
+
+
+
+
+            </form>
         </div>
 
+        <br/><br/><br/>
 
-        <!------------------------------------VOIR PLANNING------------------------------------->
-        <div class="col-sm-3 col-lg-3">
-            <div class="dash-unit">
-                <dtitle>Consulter Planning</dtitle>
-                <div class="thumbnail">
-                    <a class="navbar-brand" href="planning.html"><img src="images/planning.png" class="img-circle id="planning"> </a>
-                </div>
-            </div><!-- /dash-unit -->
+    </div>
 
-        </div><!-- /row -->
-<!-------------------------CHOISIR THEME------------------------------>
-            <div class="col-sm-3 col-lg-3">
-                <div class="dash-unit">
-                    <dtitle>Liste de themes</dtitle>
-                    <div class="thumbnail">
-                        <a class="navbar-brand" href="choix.php?idE=<?php echo $_SESSION['idEtudiant'];?>"><img src="images/check.png" id="planning"> </a>
-                    </div>
 
-                </div>
-            </div>
-
+    </div>
 
 
 
