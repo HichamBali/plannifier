@@ -12,15 +12,13 @@
 
 try {
     //connexion à la base de donnée
-    $connexionDB = new PDO("mysql:host=localhost;dbname=plan&go", "root", "AHENr5Jfovmf");
+    $connexionDB = new PDO("mysql:host=localhost;dbname=plan&go", "root", "");
     $connexionDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 } catch
 (PDOException $e) {
     die("Erreur: " . $e->getMessage());
 }
-
-
 
 
 $req = $connexionDB->prepare('SELECT * FROM  binomes ORDER BY MoyenneB DESC ');
