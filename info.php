@@ -1,14 +1,17 @@
 <?php
 session_start();
-if (empty($_SESSION['username'])) {
-    // Si inexistante ou nulle, on redirige vers le formulaire de login
-    header('Location:login.html');
-    exit();
-}
-// recuperer idEtudiant
-$idEtudiant = $_SESSION['idEtudiant'];
-?>
 
+
+if(isset($_GET['idE']))
+{$idE=$_GET['idE'];
+    $_SESSION['idE']=$idE;
+}
+else{
+    $idE=$_SESSION['idE'];
+    header("location:homeEtudiant.php");
+}
+
+?>
 
 <!doctype html>
 <html>
@@ -114,7 +117,7 @@ $idEtudiant = $_SESSION['idEtudiant'];
         <br/>
         <br/>
         <div style="padding:3px; border:2px dashed #c0c0c0;">
-            <form method="post" action="ajoutBinome.php">
+            <form method="post" action="ajouterBinome.php">
 
                 <p> Nom : </p>
                 <p> Prénom : </p>
@@ -128,6 +131,51 @@ $idEtudiant = $_SESSION['idEtudiant'];
 
 
             </form>
+        </div>
+<br/><br/>
+<!--------------------------------------------CHOIX BINOME----------------------------------------------->
+
+
+
+
+
+        <!-- idEtudiant != idEtu1 et idEtu2-->
+        <div style="padding:3px; border:2px dashed #c0c0c0;">
+
+
+
+
+            <form class="form-inline">
+                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Choisir binôme :</label>
+                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                    <?php
+                    try {
+                        $bdd = new PDO('mysql:host=localhost;dbname=plan;charset=utf8', 'root', '');
+
+
+                    } catch (Exception $e) {
+                        echo "erreur";
+                    }
+
+                    $r = $bdd->prepare('SELECT * FROM etudiants WHERE idUser != ?');
+                    $r->execute(array($idE));
+                    $row_count = 1;
+                    while($donne=$r->fetch()){
+                    ?>
+                    <option value="<?php echo $donne['idEtudiant'];?>"> <?php echo $donne['nomEtu'];?>  <?php echo $donne['prenomEtu'];?></option>
+                        <?php
+                        $row_count ++ ;
+                   }
+                    ?>
+                </select>
+
+
+
+
+
+
+
+
         </div>
 
         <br/><br/><br/>

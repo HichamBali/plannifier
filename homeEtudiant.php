@@ -144,7 +144,7 @@ $idEtudiant = $_SESSION['idEtudiant'];
                 <dtitle>Informations binôme</dtitle>
 
                 <div class="thumbnail">
-                    <a class="navbar-brand" href="info.php"><img src="images/info.png" id="info"  class="img-circle"> </a>
+                    <a class="navbar-brand" href="info.php?idE=<?php echo $_SESSION['idEtudiant'];?>"><img src="images/info.png" id="info"  class="img-circle"> </a>
                 </div>
 
             </div>

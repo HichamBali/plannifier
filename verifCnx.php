@@ -24,7 +24,6 @@ try {
 $req = $connexionDB->prepare('SELECT id, typeUser FROM users WHERE username = ? AND password = ?');
 $req->execute(array($username,$password));
 
-
 $resultat = $req->fetch();
 
 if (!$resultat) {
@@ -48,6 +47,7 @@ if (!$resultat) {
         $req->execute(array($resultat['id']));
 
         $_SESSION['idEtudiant'] = $resultat['id'];
+
 
         header("location:homeEtudiant.php");}
 
