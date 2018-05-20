@@ -194,11 +194,10 @@ else{
                     ?>
                 </select>
 
-
 <!--------------------------------------btn valider binome---------------------------------------->
                 <input type="submit" value="Valider binôme" class="btn-success" align="center"/>
 
-
+            </form>
 
 
 

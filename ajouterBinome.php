@@ -28,3 +28,7 @@ $etu2 = $_POST['choixEtu'];
 
 $req = $bdd->prepare('INSERT INTO binomes (idEtudiant1,idEtudiant2) VALUES(?,?)');
 $req->execute(array($etu1, $etu2));
+
+
+
+header("location:info.php?idE=$idE");
