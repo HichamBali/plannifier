@@ -6,7 +6,7 @@ if (empty($_SESSION['username'])) {
     exit();
 }
 // recuperer idEtudiant
-$idEtudiant = $_SESSION['idEtudiant'];
+$idEtu = $_SESSION['idEtudiant'];
 ?>
 
 
