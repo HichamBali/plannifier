@@ -10,7 +10,7 @@ $password = $_POST['password'];
 
 try {
     //connexion à la base de donnée
-    $connexionDB = new PDO("mysql:host=localhost;dbname=plan", "root", "");
+    $connexionDB = new PDO("mysql:host=localhost;dbname=plan&go", "root", "");
     $connexionDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 } catch
@@ -53,7 +53,7 @@ if (!$resultat) {
 
     elseif ($resultat['typeUser'] == "enseignant")
     {
-        $req = $connexionDB->prepare('SELECT idEnseigant FROM enseignants  WHERE enseignants.idUser = ? ');
+        $req = $connexionDB->prepare('SELECT idEnseigant FROM enseigants  WHERE enseignants.idUser = ? ');
         $req->execute(array($resultat['id']));
 
         $_SESSION['idEnseigant'] = $resultat['id'];

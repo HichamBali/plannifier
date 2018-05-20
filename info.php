@@ -122,7 +122,7 @@ else{
 <!------------------------------recuperation data bdd----------------------------------->
                 <?php
                 try {
-                    $bdd = new PDO('mysql:host=localhost;dbname=plan;charset=utf8', 'root', '');
+                    $bdd = new PDO('mysql:host=localhost;dbname=plan&go;charset=utf8', 'root', '');
                 } catch (Exception $e) {
                     echo "erreur";
                 }
@@ -136,6 +136,12 @@ else{
 
 
                 /******info binome???? *****/
+                $bin = $bdd->prepare('SELECT idEtudiant1,idEtudiant2 FROM binomes WHERE idEtudiant1 =? OR idEtudiant2 =?');
+                $bin->execute(array($donne['idEtudiant'],$donne['idEtudiant']));
+                $bin = $bin->fetch();
+                $bin2 = $bdd->prepare('SELECT * FROM etudiants WHERE (idEtudiant=? OR idEtudiant =?) AND idEtudiant !=?  ');
+                $bin2 ->execute(array($bin['idEtudiant1'],$bin['idEtudiant2'],$donne['idEtudiant']));
+                $bin2 = $bin2->fetch();
 
 
 
@@ -143,11 +149,12 @@ else{
 
                 <p> Nom : <?php echo $donne['nomEtu'];?> </p>
                 <p> Prénom :  <?php echo $donne['prenomEtu'];?> </p>
-                <p> Nom binome : </p>
-                <p> Prénom binome : </p>
+                <p> Nom binome : <?php echo $bin2['nomEtu'];?> </p>
+                <p> Prénom binome :<?php echo $bin2['prenomEtu'];?> </p>
                 <p> Moyenne : </p>
                 <p> Projet: </p>
                 <p> Encadreur : </p>
+
 
 
             </form>
