@@ -10,7 +10,7 @@ $password = $_POST['password'];
 
 try {
     //connexion à la base de donnée
-    $connexionDB = new PDO("mysql:host=localhost;dbname=plan&go", "root", "");
+    $connexionDB = new PDO("mysql:host=localhost;dbname=plan", "root", "");
     $connexionDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 } catch

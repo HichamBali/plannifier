@@ -122,7 +122,7 @@ else{
 <!------------------------------recuperation data bdd----------------------------------->
                 <?php
                 try {
-                    $bdd = new PDO('mysql:host=localhost;dbname=plan&go;charset=utf8', 'root', '');
+                    $bdd = new PDO('mysql:host=localhost;dbname=plan;charset=utf8', 'root', '');
                 } catch (Exception $e) {
                     echo "erreur";
                 }
@@ -139,6 +139,7 @@ else{
                 $bin = $bdd->prepare('SELECT idEtudiant1,idEtudiant2 FROM binomes WHERE idEtudiant1 =? OR idEtudiant2 =?');
                 $bin->execute(array($donne['idEtudiant'],$donne['idEtudiant']));
                 $bin = $bin->fetch();
+
                 $bin2 = $bdd->prepare('SELECT * FROM etudiants WHERE (idEtudiant=? OR idEtudiant =?) AND idEtudiant !=?  ');
                 $bin2 ->execute(array($bin['idEtudiant1'],$bin['idEtudiant2'],$donne['idEtudiant']));
                 $bin2 = $bin2->fetch();
