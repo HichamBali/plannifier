@@ -22,17 +22,15 @@ try {
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 
 <!--JS -->
-<div>
+<div align="center">
     <a href="TraitementAffectation.php">Affecter sujets</a>
 </div>
 <br/>
 <meta charset="utf-8">
-<div>
-<table id="etudiantTable" class="table-bordered"  align="center" style="font-size:2em;width: 80%" >
+<div class="container col-md-10">
+<table id="etudiantTable" class="table table-bordered"   >
     <thead>
-    <th size="35px">
-        idBinome
-    </th>
+
     <th>
         Etudiant_1
     </th>
@@ -42,10 +40,11 @@ try {
     <th>
         Theme
 
+    </th><th>
+        Libele
+
     </th>
-    <th>
-        Enseignant encadreur
-    </th>
+
     </thead>
 <tbody>
 <?php
@@ -73,7 +72,7 @@ while ($donne = $req->fetch()) {
         ?>
 
         <tr>
-            <td><?php echo $donne['idBinome']; ?></td>
+            <td style="display: none"><?php echo $donne['idBinome']; ?></td>
             <td><?php echo $resultat1['nomEtu']."    ".$resultat1['prenomEtu']; ?></td>
             <td><?php echo $resultat2['nomEtu']."    ".$resultat2['prenomEtu']; ?></td>
             <td><?php echo $donne['IdTheme']; ?></td>

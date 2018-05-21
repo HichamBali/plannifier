@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(empty($_SESSION['username']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    header('Location:login.html');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +53,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
 
-                    <li><a  role="button" href=""><i class="fa fa-sign-out"></i> Déconnexion </a>
+                    <li><a  role="button" href="logOut.php"><i class="fa fa-sign-out"></i> Déconnexion </a>
 
                     </li>
             </ul>
@@ -74,14 +83,12 @@
 
         </li>
         <li>
-            <a href="ListeEtudiant.php" data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-archive"></i> Liste Etudiants</a>
+            <a href="listeEtudiantTeste.php" data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-archive"></i> Liste Etudiants</a>
         </li>
         <li>
-            <a href="ListeEtudiant.php" data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-archive"></i> Liste Etudiants</a>
+            <a href="#" data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-archive"></i> Liste Enseignants</a>
         </li>
-        <li>
-            <a href="ListeEtudiant.php" data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-archive"></i> Liste Etudiants</a>
-        </li>
+
 
     </ul>
 </div>
