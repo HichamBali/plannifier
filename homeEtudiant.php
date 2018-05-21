@@ -14,7 +14,7 @@ $idEtudiant = $_SESSION['idEtudiant'];
 <html>
 <head>
     <meta charset="utf-8">
-    <title>BLOCKS - Bootstrap Dashboard Theme</title>
+    <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Carlos Alvarez - Alvarez.is">
@@ -55,9 +55,9 @@ $idEtudiant = $_SESSION['idEtudiant'];
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
 
-    <style type="text/css">
+    <!-- <style type="text/css">
         body {
-       //  background-color: #C3654B ;
+         background-color: #C3654B ;
          //   background-color:#6F9130 ;
 
             padding-top: 60px;
@@ -67,7 +67,7 @@ $idEtudiant = $_SESSION['idEtudiant'];
             background-color: #C3654B ;
 
         }
-    </style>
+    </style> -->
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
