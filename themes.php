@@ -1,48 +1,129 @@
 <?php
-$connexionDB = new PDO("mysql:host=localhost;dbname=plan&go", "root", "");
+session_start();
+
+if(isset($_GET['idEns']))
+{$idEns=$_GET['idEns'];
+    $_SESSION['idEns']=$idEns;
+}
+else{
+    $idEns = $_SESSION['idEns'];
+}
+
+
+?>
+
+
+<?php
+$connexionDB = new PDO("mysql:host=localhost;dbname=plan", "root", "");
 $connexionDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$liste = $connexionDB->prepare('SELECT * FROM themes WHERE idEnseignant=1');
+$liste1 = $connexionDB->prepare('SELECT * FROM enseigants WHERE idUser=?');
+$liste1->execute(array($idEns));
+$donne=$liste1->fetch();
+$idEnseignant = $donne['idEnseignant'];
+
+$liste = $connexionDB->prepare('SELECT * FROM themes WHERE idEnseignant=?');
+$liste->execute(array($idEnseignant));
 $liste->execute();
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Details</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="Carlos Alvarez - Alvarez.is">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
 
-    <!-- Custom fonts for this template -->
+        <link href="css/main.css" rel="stylesheet">
 
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
-    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/resume.min.css" rel="stylesheet">
-    <!--<script src="https://code.jquery.com/jquery-3.2.1.js"></script> c'est le même-->
-    <script src="js/bootstrap.min.js"></script>
-
-    <script src="js/jquery.min.js"></script>
+       <link rel='stylesheet prefetch' href='http://cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css'>
 
 
-</head>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
-<body id="page-top">
-<div class="my-auto">
-    <h3 class="mb-5">Theme</h3>
+        <script type="text/javascript" src="js/lineandbars.js"></script>
+
+        <script type="text/javascript" src="js/dash-charts.js"></script>
+        <script type="text/javascript" src="js/gauge.js"></script>
+
+        <!-- NOTY JAVASCRIPT -->
+        <script type="text/javascript" src="js/noty/jquery.noty.js"></script>
+        <script type="text/javascript" src="js/noty/layouts/top.js"></script>
+        <script type="text/javascript" src="js/noty/layouts/topLeft.js"></script>
+        <script type="text/javascript" src="js/noty/layouts/topRight.js"></script>
+        <script type="text/javascript" src="js/noty/layouts/topCenter.js"></script>
+
+        <!-- You can add more layouts if you want -->
+        <script type="text/javascript" src="js/noty/themes/default.js"></script>
+        <!-- <script type="text/javascript" src="assets/js/dash-noty.js"></script> This is a Noty bubble when you init the theme-->
+        <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="js/jquery.flexslider.js" type="text/javascript"></script>
+
+        <script type="text/javascript" src="js/admin.js"></script>
+
+        <!-- tableau sortable -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+
+
+
+        <style type="text/css">
+            body {
+            //  background-color: #C3654B ;
+            //   background-color:#6F9130 ;
+
+                padding-top: 60px;
+            }
+            .navbar-nav{
+            //   background-color: #C3654B ;
+                background-color: #C3654B ;
+
+            }
+        </style>
+
+
+    </head>
+
+<body>
+<!--------------------------------------NAVBAR------------------------------------------>
+<div class="navbar-nav navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ><img src="images/plan.png" id="plan"> </a>
+        </div>
+
+        <div class="navbar-collapse my-2 my-lg-0">
+            <a href="logOut.php" class="navbar-brand pull-right" ><strong class="fa fa-power-off"> Déconnexion</strong></a>
+            <a href="homeEnseignant.php" class="navbar-brand pull-right" ><strong class="fa fa-arrow-circle-o-left"> Retour</strong></a>
+        </div>  <!--/.nav-collapse -->
+    </div>
+</div>
+<!-------------------------------------------liste des thèmes---------------------------------------------------->
+<div class="row justify-content-center">
+<div class="col-10">
+<div align="center">
+    <br/>     <br/>
 
     <button type="button" name="ajout" id="addcons" class="btn btn-primary" onclick="$('#ajoutTheme').modal('show');">
-        <i class="fa fa-plus"></i>Ajouter</button>
+        <i class="fa fa-plus"></i>Ajouter un thème</button>
+    <br/>
+
 </div>
 
 <div id="ajoutTheme" class="modal fade" tabindex="-1" role="dialog">
@@ -88,7 +169,7 @@ $liste->execute();
 
     <div class="table-responsive">
 
-        <table id="tableThemes" role="grid" class="table table-bordered">
+        <table id="tableThemes" role="grid" class="table table-striped table-bordered">
 
 
             <thead>
@@ -140,8 +221,8 @@ $liste->execute();
         </table>
 
     </div>
-
-
+</div>
+</div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -150,21 +231,12 @@ $liste->execute();
 <script src='http://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js'></script>
 
 
-<!-- Bootstrap core JavaScript -->
-
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Plugin JavaScript -->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for this template -->
-<script src="js/resume.min.js"></script>
 
 <script>
     /******************************************* ajouter theme*********************************/
     $('#ajout').click(function () {
         $('#proposerTheme').val("Proposer");
-            });
+    });
 
 
 
@@ -227,3 +299,4 @@ $liste->execute();
 </body>
 
 </html>
+

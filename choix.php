@@ -216,7 +216,8 @@ else{
 <h2 align="center" style="color: #2b542c"><u> Liste des thèmes proposés </u> </h2> <!--titre-->
 
 <br/><br/>
-
+<div class="row justify-content-center">
+    <div class="col-8">
 <div class="table-responsive" id="table">
 
     <table id="tableTheme" role="grid" class="table table-striped table-bordered">
@@ -262,10 +263,12 @@ else{
         <tbody>
     </table>
 </div>
+    </div>
+</div>
 <!---------------------------texte Indication---------------------->
 
 <div class="row justify-content-center">
-<div class="col-8">
+<div class="col-10">
 
 
 
@@ -292,7 +295,7 @@ else{
 
 <!--------------Remplir fiche de voeux------------------>
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-10">
 
 <div>
     <ul id="sortable1">
