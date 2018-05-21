@@ -1,29 +1,32 @@
 <?php
 session_start();
-if (empty($_SESSION['username'])) {
-    // Si inexistante ou nulle, on redirige vers le formulaire de login
-    header('Location:login.html');
-    exit();
-}
-// recuperer idEtudiant
-$idEtudiant = $_SESSION['idEtudiant'];
-?>
 
+
+if(isset($_GET['idE']))
+{$idE=$_GET['idE'];
+    $_SESSION['idE']=$idE;
+}
+else{
+    $idE=$_SESSION['idE'];
+    header("location:homeEtudiant.php");
+}
+
+?>
 
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>BLOCKS - Bootstrap Dashboard Theme</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Carlos Alvarez - Alvarez.is">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
 
     <link href="css/main.css" rel="stylesheet">
-    <link href="css/font-style.css" rel="stylesheet">
-    <link href="css/flexslider.css" rel="stylesheet">
+
+
 
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
@@ -105,29 +108,109 @@ $idEtudiant = $_SESSION['idEtudiant'];
 
 <div class="container">
 <div class="row justify-content-center">
-    <div class="col-3">
+    <div class="col-6">
 
 
 
 
         <br/><br/>
+        <h2>Information binôme </h2>
         <br/>
         <br/>
         <div style="padding:3px; border:2px dashed #c0c0c0;">
-            <form method="post" action="ajoutBinome.php">
+            <form method="post" action="ajouterBinome.php">
+<!------------------------------recuperation data bdd----------------------------------->
+                <?php
+                try {
+                    $bdd = new PDO('mysql:host=localhost;dbname=plan;charset=utf8', 'root', '');
+                } catch (Exception $e) {
+                    echo "erreur";
+                }
 
-                <p> Nom : </p>
-                <p> Prénom : </p>
-                <p> Nom binome : </p>
-                <p> Prénom binome : </p>
+                /**********************Information etudiant**********************/
+
+                $r = $bdd->prepare('SELECT * FROM etudiants WHERE idUser = ?');
+                $r->execute(array($idE));
+                $donne=$r->fetch();
+
+
+
+                /******info binome???? *****/
+                $bin = $bdd->prepare('SELECT idEtudiant1,idEtudiant2 FROM binomes WHERE idEtudiant1 =? OR idEtudiant2 =?');
+                $bin->execute(array($donne['idEtudiant'],$donne['idEtudiant']));
+                $bin = $bin->fetch();
+
+                $bin2 = $bdd->prepare('SELECT * FROM etudiants WHERE (idEtudiant=? OR idEtudiant =?) AND idEtudiant !=?  ');
+                $bin2 ->execute(array($bin['idEtudiant1'],$bin['idEtudiant2'],$donne['idEtudiant']));
+                $bin2 = $bin2->fetch();
+
+
+
+?>
+
+                <p> Nom : <?php echo $donne['nomEtu'];?> </p>
+                <p> Prénom :  <?php echo $donne['prenomEtu'];?> </p>
+                <p> Nom binome : <?php echo $bin2['nomEtu'];?> </p>
+                <p> Prénom binome :<?php echo $bin2['prenomEtu'];?> </p>
                 <p> Moyenne : </p>
                 <p> Projet: </p>
                 <p> Encadreur : </p>
 
 
 
+            </form>
+        </div>
+<br/><br/>
+
+
+
+
+
+
+
+<!--------------------------------------------CHOIX BINOME----------------------------------------------->
+
+
+
+
+
+        <!--  test php if idEtudiant != idEtu1 et idEtu2-->
+
+        <div style="padding:3px; border:2px dashed #c0c0c0;">
+
+            <form class="form-inline" action="ajouterBinome.php" method="post">
+                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Choisir binôme :</label>
+                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="choixEtu">
+                    <?php
+                    try {
+                        $bdd = new PDO('mysql:host=localhost;dbname=plan;charset=utf8', 'root', '');
+
+
+                    } catch (Exception $e) {
+                        echo "erreur";
+                    }
+
+                    $r = $bdd->prepare('SELECT * FROM etudiants WHERE idUser != ?');
+                    $r->execute(array($idE));
+                    $row_count = 1;
+                    while($donne=$r->fetch()){
+                    ?>
+                    <option value="<?php echo $donne['idEtudiant'];?>"> <?php echo $donne['nomEtu'];?>  <?php echo $donne['prenomEtu'];?></option>
+                        <?php
+                        $row_count ++ ;
+                   }
+                    ?>
+                </select>
+
+<!--------------------------------------btn valider binome---------------------------------------->
+                <input type="submit" value="Valider binôme" class="btn-success" align="center"/>
 
             </form>
+
+
+
+
+
         </div>
 
         <br/><br/><br/>

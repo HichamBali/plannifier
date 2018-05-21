@@ -24,7 +24,6 @@ try {
 $req = $connexionDB->prepare('SELECT id, typeUser FROM users WHERE username = ? AND password = ?');
 $req->execute(array($username,$password));
 
-
 $resultat = $req->fetch();
 
 if (!$resultat) {
@@ -49,15 +48,17 @@ if (!$resultat) {
 
         $_SESSION['idEtudiant'] = $resultat['id'];
 
+
         header("location:homeEtudiant.php");}
 
     elseif ($resultat['typeUser'] == "enseignant")
     {
-        $req = $connexionDB->prepare('SELECT idEnseigant FROM enseignants  WHERE enseignants.idUser = ? ');
+        $req = $connexionDB->prepare('SELECT  idEnseignant FROM enseigants  WHERE enseigants.idUser = ? ');
         $req->execute(array($resultat['id']));
 
-        $_SESSION['idEnseigant'] = $resultat['id'];
+        $_SESSION['idEnseignant'] = $resultat['id'];
         header("location:homeEnseignant.php");}
+
     elseif ($resultat['typeUser'] == "comite")
     {
         $req = $connexionDB->prepare('SELECT idComite FROM comites  WHERE comites.idUser = ? ');

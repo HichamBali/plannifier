@@ -6,7 +6,24 @@ if (empty($_SESSION['username'])) {
     exit();
 }
 // recuperer idEtudiant
-$idEtudiant = $_SESSION['idEtudiant'];
+$idEtu = $_SESSION['idEtudiant'];
+
+$connexionDB = new PDO("mysql:host=localhost;dbname=plan", "root", "");
+$connexionDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$r = $connexionDB->prepare('SELECT * FROM etudiants WHERE idUser=?');
+$r->execute(array($idEtu));
+$donne=$r->fetch();
+$idEtudiant = $donne['idEtudiant'];
+
+$m = $connexionDB->prepare('SELECT * FROM binomes WHERE idEtudiant1 = ? OR idEtudiant2 = ?');
+$m->execute(array($idEtudiant, $idEtudiant));
+$donne=$m->fetch();
+$idBinome = $donne['idBinome'];
+
+$n =  $connexionDB->prepare('SELECT tauxAvancement FROM avancements WHERE idBinome = ?');
+$n->execute(array($idBinome));
+$donne=$n->fetch();
+$tauxAvancement = $donne['tauxAvancement'];
 ?>
 
 
@@ -144,7 +161,7 @@ $idEtudiant = $_SESSION['idEtudiant'];
                 <dtitle>Informations binôme</dtitle>
 
                 <div class="thumbnail">
-                    <a class="navbar-brand" href="info.php"><img src="images/info.png" id="info"  class="img-circle"> </a>
+                    <a class="navbar-brand" href="info.php?idE=<?php echo $_SESSION['idEtudiant'];?>"><img src="images/info.png" id="info"  class="img-circle"> </a>
                 </div>
 
             </div>
@@ -157,7 +174,10 @@ $idEtudiant = $_SESSION['idEtudiant'];
                 <br/>  <br/>  <br/>
                 <div id="load"></div>
 
-                <h2>45%</h2>
+
+
+
+                <h2> <?php echo "$tauxAvancement"?>%</h2>
                 <br/>
 
             </div>
