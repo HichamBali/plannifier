@@ -1,12 +1,3 @@
-<?php
-session_start();
-if(empty($_SESSION['username']))
-{
-    // Si inexistante ou nulle, on redirige vers le formulaire de login
-    header('Location:login.html');
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +10,6 @@ if(empty($_SESSION['username']))
 
     <link rel="stylesheet" href="homeSecretaire.css"/>
     <link rel='stylesheet prefetch' href='http://cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css'>
-
 
     <script src="js/jquery.js"></script>
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -40,7 +30,7 @@ if(empty($_SESSION['username']))
 </head>
 <body>
 
-<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+<div id="top-nav" class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -53,40 +43,28 @@ if(empty($_SESSION['username']))
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
 
-                    <li><a  role="button" href="logOut.php"><i class="fa fa-sign-out"></i> Déconnexion </a>
+                <li><a  role="button" href="logOut.php"><i class="fa fa-sign-out"></i> Déconnexion </a>
 
-                    </li>
+                </li>
             </ul>
         </div>
     </div>
-    <!-- /container -->
 </div>
-
-<!-- /Header -->
-
-<!-- Main -->
 
 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
 
     <ul class="nav nav-pills nav-stacked" style="border-right:1px solid black">
-
         <li>
-            <a href="listeEtudiantTeste.php"><i class="fa fa-dashboard"></i> Tableau de bord</a>
+            <a href="#"><i class="fa fa-dashboard"></i> Tableau de bord</a>
         </li>
 
 
         <li>
-            <a href="afficherAFF.php"><i class="fa fa-check-circle"></i> Affectation </a>
+            <a href="themes.php" ><i class="fa fa-check-circle"></i>Themes </a>
         </li>
         <li>
-            <a href=""><span class="fa fa-university"></span> Soutenance </a>
+            <a href="themes.php"  ><span class="fa fa-university"></span> Encadrement </a>
 
-        </li>
-        <li>
-            <a href="listeEtudiantTeste.php"><i class="fa fa-archive"></i> Liste Etudiants</a>
-        </li>
-        <li>
-            <a href="listeEnseignants.php" data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-archive"></i> Liste Enseignants</a>
         </li>
 
 

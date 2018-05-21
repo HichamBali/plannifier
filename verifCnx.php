@@ -57,7 +57,7 @@ if (!$resultat) {
         $req = $connexionDB->prepare('SELECT idEnseignant FROM enseigants WHERE idUser = ? ');
         $req=$req->execute(array($resultat['id']));
         $_SESSION['idEnseigant'] = $resultat['id'];
-        header("location:homeEnseignat.php");}
+        header("location:themes.php");}
     elseif ($resultat['typeUser'] == "comite")
     {
         $req = $connexionDB->prepare('SELECT idComite FROM comites  WHERE comites.idUser = ? ');

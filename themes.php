@@ -1,8 +1,17 @@
 <?php
 $connexionDB = new PDO("mysql:host=localhost;dbname=plan&go", "root", "");
 $connexionDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$liste = $connexionDB->prepare('SELECT * FROM themes WHERE idEnseignant=1');
-$liste->execute();
+session_start();
+$Ens = $_SESSION['username'];
+$idUs=$connexionDB->prepare('SELECT * FROM users WHERE username = ?');
+$idUs->execute(array($Ens));
+$idUs=$idUs->fetch();
+$user = $connexionDB->prepare('SELECT * FROM enseigants WHERE idUSer = ?');
+$user->execute(array($idUs['id']));
+$user=$user->fetch();
+$idEn =  $user['idEnseignant'];
+$liste = $connexionDB->prepare('SELECT * FROM themes WHERE idEnseignant=?');
+$liste->execute(array($idEn));
 
 ?>
 
@@ -19,17 +28,7 @@ $liste->execute();
     <title>Details</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
-
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
-    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/resume.min.css" rel="stylesheet">
-    <!--<script src="https://code.jquery.com/jquery-3.2.1.js"></script> c'est le même-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
 
     <script src="js/jquery.min.js"></script>
@@ -38,15 +37,24 @@ $liste->execute();
 </head>
 
 <body id="page-top">
-<div class="my-auto">
-    <h3 class="mb-5">Theme</h3>
+<?php
+include "homeEnsei.php";
+?>
 
-    <button type="button" name="ajout" id="addcons" class="btn btn-primary" onclick="$('#ajoutTheme').modal('show');">
+
+
+
+
+<div class="my-auto" align="center">
+    <h3 class="mb-5">Theme</h3></div>
+
+    <div align="left"><button type="button" name="ajout" id="addcons" class="btn btn-primary" onclick="$('#ajoutTheme').modal('show');">
         <i class="fa fa-plus"></i>Ajouter</button>
 </div>
 
 <div id="ajoutTheme" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style=" margin-left: -15%;
+    margin-top: 10%;">
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Proposer theme</h3>
@@ -82,15 +90,9 @@ $liste->execute();
 </div>
 
 
-
-<div class="resume-item d-flex flex-column flex-md-row mb-5">
-    <!-- col md sm ...-->
-
-    <div class="table-responsive">
+    <div class="container col-md-10">
 
         <table id="tableThemes" role="grid" class="table table-bordered">
-
-
             <thead>
             <tr>
                 <th style="display:none">id</th>
@@ -114,7 +116,7 @@ $liste->execute();
                     <div class="btn-group">
                         <button type="button"
                                 class="btn btn-primary btn-lm dropdown-toggle" data-toggle="dropdown">
-                            Action <span class="caret"></span>
+                            Action
                         </button>
                         <ul class="dropdown-menu" role="menu">
 
@@ -140,9 +142,6 @@ $liste->execute();
         </table>
 
     </div>
-
-
-</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
