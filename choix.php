@@ -31,7 +31,7 @@ else{
 
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
 
-    <link href="css/main.css" rel="stylesheet">
+    
 
 
 
@@ -65,19 +65,7 @@ else{
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
 
-    <style type="text/css">
-        body {
-        //  background-color: #C3654B ;
-        //   background-color:#6F9130 ;
-
-            padding-top: 60px;
-        }
-        .navbar-nav{
-        //   background-color: #C3654B ;
-            background-color: #C3654B ;
-
-        }
-    </style>
+   
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -90,9 +78,27 @@ else{
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <!--<link rel="stylesheet" href="/resources/demos/style.css">--> <!--là on ajoute du css à nos items..-->
     <style>
-        
+         body {
+      
+    background:#fcfcee;
+    font-family: 'Open Sans', sans-serif;
+
+
+            padding-top: 60px;
+        }
+      .navbar-nav {
+        background-color: #f4e8c1;
+      }
+
+
+
+
+
+
+
+
         #sortable1, #sortable2 {
-            border: 1px solid #351F39;
+            border: 1px solid #c0c0c0;
             width: 330px;
             min-height: 20px;
             list-style-type: none;
@@ -100,7 +106,8 @@ else{
             padding: 5px 0 0 0;
             float: left;
             margin-right: 100px;
-            background-color:  #351F39;
+            background-color:  #f4e8c1;
+            color: black;
         }
 
         #sortable1 li, #sortable2 li {
@@ -112,19 +119,19 @@ else{
 
         }
         .ui-sortable li{
-            background-color: #2b542c;
+            background-color: #F5F5F5;
 
-            color: white;
+            color: black;
         }
 
         /*fond de la page*/
         body {
-            background:#F4E8C1;
+            background:#fcfcee;
             font-family: 'Open Sans', sans-serif;
         }
         button {
             /* couleur bouton*/
-            background-color: #2b542c;
+            background-color: #59C6C3;
 
 
         }
@@ -213,14 +220,14 @@ else{
 <!-----------------------Afficher liste des thèmes avec details-------------->
 <br/><br/>
 
-<h2 align="center" style="color: #2b542c"><u> Liste des thèmes proposés </u> </h2> <!--titre-->
+<h2 align="center" style="color: #79D54C"><u> Liste des thèmes proposés </u> </h2> <!--titre-->
 
 <br/><br/>
 <div class="row justify-content-center">
     <div class="col-8">
 <div class="table-responsive" id="table">
 
-    <table id="tableTheme" role="grid" class="table table-striped table-bordered">
+    <table id="tableTheme" role="grid" class="table table-striped table-bordered" style="border: 1px solid #c0c0c0">
 
         <!-- le head du tableau-->
         <thead>
@@ -274,15 +281,16 @@ else{
 
 
     <br/><br/>
-    <h2 align="center" style="color: #2b542c"><u> Remplir ma fiche de voeux</u></h2>
+    <h2 align="center" style="color: #79D54C"><u> Remplir ma fiche de voeux</u></h2>
     <br/>
     <br/>
-    <div style="padding:3px; border:2px dashed #c0c0c0;">
-        <strong style="color: #953b39">Indication:</strong>:  Pour faire remplir votre fiche de voeux
-        <br/>  1- faites glisser les les thèmes de la liste 1 au liste 2.
-        <br/>  2- Ordonner vox choix dan la liste 2.
+    <div style="padding:3px; border:1px dashed #c0c0c0;">
+        <strong style="color: #953b39">Indication:</strong>:  Pour  remplir votre fiche de voeux
+        <br/>  1- faites glisser les les thèmes de la liste 1 à la  liste 2.
+        <br/>  2- Ordonner vos choix dans la 2eme liste.
         <br/>  3- Cliquer sur envoyer ma fiche de voeux.
-        <br/> La dernière étape ce fait qu'une seule fois, soyez sure de vox choix et ses classement. BON COURAGE!
+        <br/>
+        <br/> ATTENTION La dernière étape ce fait qu'une seule fois,  BON COURAGE!
     </div>
 
     <br/><br/><br/>
@@ -323,7 +331,7 @@ else{
         ?>
     </ul>
     <ul id="sortable2" class="connectedSortable">
-        <h3 align="center" style="color: white">Glissez et ordonnez vos choix ici</h3>
+        <h3 align="center" style="color: black">Glissez et ordonnez vos choix ici</h3>
     </ul>
 
 </div>
@@ -332,8 +340,8 @@ else{
     </div>
 </div>
 <div class="row justify-content-center">
-<div class="col-8" align="center">
-    <button class="save" id= "btnId" onclick="savingdata()" style="color: white">Valider ma fiche de voeux</button>
+<div class="col-8" align="right">
+    <button class="save" id= "btnId" onclick="savingdata()" style="color: black">Valider</button>
 </div>
 </body>
 

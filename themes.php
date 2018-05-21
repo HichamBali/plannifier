@@ -78,23 +78,18 @@ $liste->execute();
 
 
 
-        <style type="text/css">
-            body {
-            //  background-color: #C3654B ;
-            //   background-color:#6F9130 ;
-
-                padding-top: 60px;
-            }
-            .navbar-nav{
-            //   background-color: #C3654B ;
-                background-color: #C3654B ;
-
-            }
-        </style>
-
+       
 
     </head>
+    <style>
 
+.modal-header {
+    /*background-image:url('../images/sep-half.png');*/
+    background-color: white;
+    color:black;
+}
+
+</style>
 <body>
 <!--------------------------------------NAVBAR------------------------------------------>
 <div class="navbar-nav navbar-inverse navbar-fixed-top">
@@ -120,8 +115,9 @@ $liste->execute();
 <div align="center">
     <br/>     <br/>
 
-    <button type="button" name="ajout" id="addcons" class="btn btn-primary" onclick="$('#ajoutTheme').modal('show');">
-        <i class="fa fa-plus"></i>Ajouter un thème</button>
+    <button type="button" name="ajout" id="addcons" class="btn btn-success" onclick="$('#ajoutTheme').modal('show');">
+        <i class="fa fa-plus"></i>Ajouter</button>
+      
     <br/>
 
 </div>

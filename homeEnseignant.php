@@ -49,6 +49,59 @@ $idEnseignant = $_SESSION['idEnseignant'];
         body {
             padding-top: 60px;
         }
+
+
+                    .dash-unit:hover {
+    background-color: #9EFCB4;
+    -moz-box-shadow:    3px 3px 2px 0px #151515;
+    -webkit-box-shadow: 3px 3px 2px 0px #151515;
+    box-shadow:         3px 3px 2px 0px #79D54C;
+
+}
+.dash-unit {
+    margin-bottom: 30px;
+    padding-bottom:10px;
+    border: 1px solid #eadcb2;
+    /*background-image:url('../images/sep-half.png');*/
+    background-color: #F4E8C1;
+    color:black;
+    height:290px;
+}
+
+.dash-unit dtitle {
+    font-size:11px;
+    text-transform:uppercase;
+    color:black;
+    margin:8px;
+    padding:0px;
+    height:inherit
+    }
+             .half-unit {
+    margin-bottom: 30px;
+    padding-bottom: 4px;
+    border: 1px solid #eadcb2;
+    /*background-image:url('../images/sep-half.png');*/
+    background-color: #F4E8C1;
+    color:white;
+    height:130px;
+}
+
+.half-unit:hover {
+    background-color: #9EFCB4;
+    -moz-box-shadow:    3px 3px 2px 0px #151515;
+    -webkit-box-shadow: 3px 3px 2px 0px #151515;
+    box-shadow:         3px 3px 2px 0px #79D54C;
+
+}
+.half-unit dtitle {
+    font-size:10px;
+    text-transform:uppercase;
+    color:black;
+    margin:8px;
+    padding:0px;
+    height:inherit
+    }
+  
     </style>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -61,19 +114,7 @@ $idEnseignant = $_SESSION['idEnseignant'];
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 
 
-    <style type="text/css">
-        body {
-        //  background-color: #C3654B ;
-        //   background-color:#6F9130 ;
-
-            padding-top: 60px;
-        }
-        .navbar-nav{
-        //   background-color: #C3654B ;
-            background-color: #C3654B ;
-
-        }
-    </style>
+ 
 
 
 

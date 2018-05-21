@@ -48,7 +48,58 @@ if(empty($_SESSION['username']))
       body {
         padding-top: 60px;
       }
-    </style>
+
+    
+                    .dash-unit:hover {
+    background-color: #9EFCB4;
+    -moz-box-shadow:    3px 3px 2px 0px #151515;
+    -webkit-box-shadow: 3px 3px 2px 0px #151515;
+    box-shadow:         3px 3px 2px 0px #79D54C;
+
+}
+.dash-unit {
+    margin-bottom: 30px;
+    padding-bottom:10px;
+    border: 1px solid #eadcb2;
+    /*background-image:url('../images/sep-half.png');*/
+    background-color: #F4E8C1;
+    color:black;
+    height:290px;
+}
+ .half-unit {
+    margin-bottom: 30px;
+    padding-bottom: 4px;
+    border: 1px solid #eadcb2;
+    /*background-image:url('../images/sep-half.png');*/
+    background-color: #F4E8C1;
+    color:black;
+    height:130px;
+}
+.half-unit dtitle {
+    font-size:10px;
+    text-transform:uppercase;
+    color:black;
+    margin:8px;
+    padding:0px;
+    height:inherit
+    }
+
+.half-unit:hover {
+    background-color: #9EFCB4;
+    -moz-box-shadow:    3px 3px 2px 0px #151515;
+    -webkit-box-shadow: 3px 3px 2px 0px #151515;
+    box-shadow:         3px 3px 2px 0px #79D54C;
+
+}
+.dash-unit dtitle {
+    font-size:11px;
+    text-transform:uppercase;
+    color:black;
+    margin:8px;
+    padding:0px;
+    height:inherit
+    }
+                </style>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>

@@ -58,19 +58,6 @@ else{
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
 
-    <style type="text/css">
-        body {
-        //  background-color: #C3654B ;
-        //   background-color:#6F9130 ;
-
-            padding-top: 60px;
-        }
-        .navbar-nav{
-        //   background-color: #C3654B ;
-            background-color: #C3654B ;
-
-        }
-    </style>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -117,7 +104,7 @@ else{
         <h2>Information binôme </h2>
         <br/>
         <br/>
-        <div style="padding:3px; border:2px dashed #c0c0c0;">
+        <div style="padding:3px; border:1px dashed #c0c0c0;">
             <form method="post" action="ajouterBinome.php">
 <!------------------------------recuperation data bdd----------------------------------->
                 <?php
@@ -176,7 +163,7 @@ else{
 
         <!--  test php if idEtudiant != idEtu1 et idEtu2-->
 
-        <div style="padding:3px; border:2px dashed #c0c0c0;">
+        <div style="padding:3px; border:1px dashed #c0c0c0;">
 
             <form class="form-inline" action="ajouterBinome.php" method="post">
                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Choisir binôme :</label>
@@ -201,9 +188,9 @@ else{
                    }
                     ?>
                 </select>
-
+<br>
 <!--------------------------------------btn valider binome---------------------------------------->
-                <input type="submit" value="Valider binôme" class="btn-success" align="center"/>
+                <input type="submit" value="Valider binôme" class="btn-success" align="center" style="padding: 2px" />
 
             </form>
 

@@ -13,10 +13,10 @@ $connexionDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $r = $connexionDB->prepare('SELECT * FROM etudiants WHERE idUser=?');
 $r->execute(array($idEtu));
 $donne=$r->fetch();
-$idEtudiant = $donne['idEtudiant'];
+$idEtud = $donne['idEtudiant'];
 
 $m = $connexionDB->prepare('SELECT * FROM binomes WHERE idEtudiant1 = ? OR idEtudiant2 = ?');
-$m->execute(array($idEtudiant, $idEtudiant));
+$m->execute(array($idEtud, $idEtud));
 $donne=$m->fetch();
 $idBinome = $donne['idBinome'];
 
@@ -34,7 +34,7 @@ $tauxAvancement = $donne['tauxAvancement'];
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="Carlos Alvarez - Alvarez.is">
+    
 
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
 
@@ -85,6 +85,64 @@ $tauxAvancement = $donne['tauxAvancement'];
 
         }
     </style> -->
+       <style >
+                    .dash-unit:hover {
+    background-color: #9EFCB4;
+    -moz-box-shadow:    3px 3px 2px 0px #151515;
+    -webkit-box-shadow: 3px 3px 2px 0px #151515;
+    box-shadow:         3px 3px 2px 0px #79D54C;
+
+}
+.dash-unit {
+    margin-bottom: 30px;
+    padding-bottom:10px;
+    border: 1px solid #eadcb2;
+    /*background-image:url('../images/sep-half.png');*/
+    background-color: #F4E8C1;
+    color:black;
+    height:290px;
+}
+
+.dash-unit dtitle {
+    font-size:11px;
+    text-transform:uppercase;
+    color:black;
+    margin:8px;
+    padding:0px;
+    height:inherit
+    }
+
+    .half-unit {
+    margin-bottom: 30px;
+    padding-bottom: 4px;
+    border: 1px solid #eadcb2;
+    /*background-image:url('../images/sep-half.png');*/
+    background-color: #F4E8C1;
+    color:white;
+    height:130px;
+}
+
+.half-unit:hover {
+    background-color: #9EFCB4;
+    -moz-box-shadow:    3px 3px 2px 0px #151515;
+    -webkit-box-shadow: 3px 3px 2px 0px #151515;
+    box-shadow:         3px 3px 2px 0px #79D54C;
+
+}
+.half-unit dtitle {
+    font-size:10px;
+    text-transform:uppercase;
+    color:black;
+    margin:8px;
+    padding:0px;
+    height:inherit
+    }
+.progress-bar {
+    background-color:#59C6C3;
+}
+
+
+                </style>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -170,6 +228,7 @@ $tauxAvancement = $donne['tauxAvancement'];
         <!-- DONUT CHART BLOCK -->
         <div class="col-sm-3 col-lg-3">
             <div class="dash-unit">
+             
                 <dtitle>Taux Avancement du projet</dtitle>
                 <br/>  <br/>  <br/>
                 <div id="load"></div>

@@ -57,19 +57,7 @@
 
 
 
-        <style type="text/css">
-    body {
-    //  background-color: #C3654B ;
-    //   background-color:#6F9130 ;
-
-    padding-top: 60px;
-            }
-            .navbar-nav{
-    //   background-color: #C3654B ;
-    background-color: #C3654B ;
-
-            }
-        </style>
+      
 
 
     </head>
@@ -96,7 +84,7 @@
 
 <br/><br/>
 
-<h2 align="center" style="color: #2b542c"><u> Liste des thèmes validés </u> </h2> <!--titre-->
+<h2 align="center" style="color:#79D54C"><u> Liste des thèmes validés </u> </h2> <!--titre-->
 
 <br/><br/>
 <div class="row justify-content-center">

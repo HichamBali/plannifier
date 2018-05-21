@@ -60,15 +60,15 @@ h5 {
 .dash-unit {
 	margin-bottom: 30px;
 	padding-bottom:10px;
-	border: 1px solid #383737;
+	border: 1px solid #eadcb2;
 	/*background-image:url('../images/sep-half.png');*/
-	background-color: #351F39;
-	color:white;
+	background-color: #79D54C;
+	color:black;
 	height:290px;
 }
 
 .dash-unit:hover {
-	background-color: #726A95;
+	background-color: #9EFCB4;
 	-moz-box-shadow:    3px 3px 2px 0px #151515;
     -webkit-box-shadow: 3px 3px 2px 0px #151515;
     box-shadow:         3px 3px 2px 0px #151515;
@@ -281,7 +281,7 @@ h5 {
 
 .modal-header {
 	/*background-image:url('../images/sep-half.png');*/
-	background-color: #4f4f4f;
+	background-color: #F4E8C1;
 	color:#fff;
 }
 
@@ -323,7 +323,7 @@ textarea {
 
 
 .progress-bar {
-	background-color: #b2c831;
+	background-color:#59C6C3;
 }
 
 
@@ -608,10 +608,10 @@ ul#jstwitter li a{
 /********** CUSTOMIZED BUTTON **********/
 .btnnew {
   display: inline-block;
-  *border-left: 0 none #707070;
-	border-right: 0 none #707070;
-	border-top: 0 none #707070;
-	border-bottom: 0 none #707070;
+  *border-left: 0 none #79D54C;
+	border-right: 0 none #79D54C;
+	border-top: 0 none #79D54C;
+	border-bottom: 0 none #79D54C;
 	display: inline;
     padding: 4px 12px;
     margin-bottom: 0;
@@ -622,7 +622,7 @@ ul#jstwitter li a{
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
-  background-color: #5a5a5a;
+  background-color: #79D54C;
   *background-color: #5a5a5a;
     background-repeat: repeat-x;
   *-webkit-border-radius: 4px;
