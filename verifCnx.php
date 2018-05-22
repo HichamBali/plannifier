@@ -10,7 +10,7 @@ $password = $_POST['password'];
 
 try {
     //connexion à la base de donnée
-    $connexionDB = new PDO("mysql:host=localhost;dbname=plan", "root", "");
+    $connexionDB = new PDO("mysql:host=localhost;dbname=plan&go", "root", "");
     $connexionDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 } catch
@@ -28,17 +28,19 @@ $resultat = $req->fetch();
 
 if (!$resultat) {
     echo 'Mauvais identifiant ou mot de passe !';
+    header("location:login.html");
 } else {
     session_start();
     $_SESSION['username']=$username;
 
 
-    if($resultat['typeUser'] == "secretaires"){
-        header("location:homeAdmin.php");
+    if($resultat['typeUser'] == "secretaire"){
+
         $req = $connexionDB->prepare('SELECT idSecretaire FROM secretaires WHERE secretaires.idUser = ? ');
         $req->execute(array($resultat['id']));
 
         $_SESSION['idSecretaire'] = $resultat['id'];
+        header("location:homeSecretaire.php");
     }
 
     elseif ($resultat['typeUser'] == "etudiant")
@@ -53,12 +55,10 @@ if (!$resultat) {
 
     elseif ($resultat['typeUser'] == "enseignant")
     {
-        $req = $connexionDB->prepare('SELECT  idEnseignant FROM enseigants  WHERE enseigants.idUser = ? ');
-        $req->execute(array($resultat['id']));
-
-        $_SESSION['idEnseignant'] = $resultat['id'];
-        header("location:homeEnseignant.php");}
-
+        $req = $connexionDB->prepare('SELECT idEnseignant FROM enseigants WHERE idUser = ? ');
+        $req=$req->execute(array($resultat['id']));
+        $_SESSION['idEnseigant'] = $resultat['id'];
+        header("location:themes.php");}
     elseif ($resultat['typeUser'] == "comite")
     {
         $req = $connexionDB->prepare('SELECT idComite FROM comites  WHERE comites.idUser = ? ');

@@ -11,7 +11,7 @@ session_start();
 $idE = $_SESSION['idE']; //iduser de l'etu
 
 try {
-    $bdd = new PDO('mysql:host=localhost;dbname=plan;charset=utf8', 'root', '');
+    $bdd = new PDO('mysql:host=localhost;dbname=plan&go;charset=utf8', 'root', '');
 
 
 } catch (Exception $e) {

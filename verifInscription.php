@@ -20,7 +20,7 @@ $etudiant  = 'etudiant';
 
 try {
 
-    $connexionDB = new PDO('mysql:host=localhost;dbname=plan', 'root', '');
+    $connexionDB = new PDO('mysql:host=localhost;dbname=plan&go', 'root', '');
     $connexionDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $insert = "INSERT INTO users(username, password, typeUser)

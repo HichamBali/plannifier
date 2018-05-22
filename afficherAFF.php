@@ -11,23 +11,25 @@ try {
 
 
 
-
 ?>
-<!DOCTYPE html>
+<div>
 
+<?php include 'homeSecretaire.php'
+?>
+</div>
+<!--<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 
-<html>
-<body>
-
-<center><!-- <input type="button" value="Affecter" id="aff"/> --> <a href="TraitementAffectation.php">Affecter</a> </center>
-
-
-
-<table>
+<!--JS -->
+<div align="center">
+    <a href="TraitementAffectation.php">Affecter sujets</a>
+</div>
+<br/>
+<meta charset="utf-8">
+<div class="container col-md-10">
+<table id="etudiantTable" class="table table-bordered"   >
     <thead>
-    <th>
-        idBinome
-    </th>
+
     <th>
         Etudiant_1
     </th>
@@ -37,7 +39,11 @@ try {
     <th>
         Theme
 
+    </th><th>
+        Libele
+
     </th>
+
     </thead>
 <tbody>
 <?php
@@ -49,6 +55,9 @@ while ($donne = $req->fetch()) {
     if($req2->execute(array($donne['idBinome']))) {
         $resultat=$req2->fetch();
 
+        $them = $connexionDB->prepare('SELECT libelle FROM  themes WHERE idTheme=?');
+        $them->execute(array($donne['IdTheme']));
+        $them=$them->fetch();
 
 
         $req3 = $connexionDB->prepare('SELECT * FROM  etudiants WHERE idEtudiant=?');
@@ -62,10 +71,11 @@ while ($donne = $req->fetch()) {
         ?>
 
         <tr>
-            <td><?php echo $donne['idBinome']; ?></td>
-            <td><?php echo $resultat1['nomEtu']." _ ".$resultat1['prenomEtu']; ?></td>
-            <td><?php echo $resultat2['nomEtu']." _ ".$resultat2['prenomEtu']; ?></td>
+            <td style="display: none"><?php echo $donne['idBinome']; ?></td>
+            <td><?php echo $resultat1['nomEtu']."    ".$resultat1['prenomEtu']; ?></td>
+            <td><?php echo $resultat2['nomEtu']."    ".$resultat2['prenomEtu']; ?></td>
             <td><?php echo $donne['IdTheme']; ?></td>
+            <td><?php echo $them['libelle']; ?></td>
         </tr>
 
 
@@ -82,10 +92,14 @@ while ($donne = $req->fetch()) {
 
 ?>
 
-</tbody></table>
+</tbody></table></div>
 
-</body>
-</html>
+
+</div>
+
+
+
+
 
 
 
