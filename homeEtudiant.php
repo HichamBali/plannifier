@@ -8,7 +8,7 @@ if (empty($_SESSION['username'])) {
 // recuperer idEtudiant
 $idEtu = $_SESSION['idEtudiant'];
 
-$connexionDB = new PDO("mysql:host=localhost;dbname=plan", "root", "");
+$connexionDB = new PDO("mysql:host=localhost;dbname=plan&go", "root", "");
 $connexionDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $r = $connexionDB->prepare('SELECT * FROM etudiants WHERE idUser=?');
 $r->execute(array($idEtu));

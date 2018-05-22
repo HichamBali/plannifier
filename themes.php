@@ -1,21 +1,9 @@
 <?php
 session_start();
-
-if(isset($_GET['idEns']))
-{$idEns=$_GET['idEns'];
-    $_SESSION['idEns']=$idEns;
-}
-else{
-    $idEns = $_SESSION['idEns'];
-}
-
-
-?>
-
-
-<?php
-$connexionDB = new PDO("mysql:host=localhost;dbname=plan", "root", "");
+$idEns=$_SESSION['username'];
+$connexionDB = new PDO("mysql:host=localhost;dbname=plan&go", "root", "");
 $connexionDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 $liste1 = $connexionDB->prepare('SELECT * FROM enseigants WHERE idUser=?');
 $liste1->execute(array($idEns));
 $donne=$liste1->fetch();
@@ -23,7 +11,17 @@ $idEnseignant = $donne['idEnseignant'];
 
 $liste = $connexionDB->prepare('SELECT * FROM themes WHERE idEnseignant=?');
 $liste->execute(array($idEnseignant));
-$liste->execute();
+$Ens = $_SESSION['username'];
+$idUs=$connexionDB->prepare('SELECT * FROM users WHERE username = ?');
+$idUs->execute(array($Ens));
+$idUs=$idUs->fetch();
+$user = $connexionDB->prepare('SELECT * FROM enseigants WHERE idUSer = ?');
+$user->execute(array($idUs['id']));
+$user=$user->fetch();
+$idEn =  $user['idEnseignant'];
+$liste = $connexionDB->prepare('SELECT * FROM themes WHERE idEnseignant=?');
+$liste->execute(array($idEn));
+
 
 ?>
 
@@ -40,7 +38,6 @@ $liste->execute();
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
-
         <link href="css/main.css" rel="stylesheet">
 
        <link rel='stylesheet prefetch' href='http://cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css'>
@@ -49,32 +46,15 @@ $liste->execute();
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
-        <script type="text/javascript" src="js/lineandbars.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
 
-        <script type="text/javascript" src="js/dash-charts.js"></script>
-        <script type="text/javascript" src="js/gauge.js"></script>
 
-        <!-- NOTY JAVASCRIPT -->
-        <script type="text/javascript" src="js/noty/jquery.noty.js"></script>
-        <script type="text/javascript" src="js/noty/layouts/top.js"></script>
-        <script type="text/javascript" src="js/noty/layouts/topLeft.js"></script>
-        <script type="text/javascript" src="js/noty/layouts/topRight.js"></script>
-        <script type="text/javascript" src="js/noty/layouts/topCenter.js"></script>
-
-        <!-- You can add more layouts if you want -->
-        <script type="text/javascript" src="js/noty/themes/default.js"></script>
-        <!-- <script type="text/javascript" src="assets/js/dash-noty.js"></script> This is a Noty bubble when you init the theme-->
-        <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
-        <script src="js/jquery.flexslider.js" type="text/javascript"></script>
-
-        <script type="text/javascript" src="js/admin.js"></script>
 
         <!-- tableau sortable -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="/resources/demos/style.css">
 
 
 
@@ -83,15 +63,18 @@ $liste->execute();
     </head>
     <style>
 
-.modal-header {
+<!--.modal-header {
     /*background-image:url('../images/sep-half.png');*/
-    background-color: white;
+   /* background-color: white;
     color:black;
-}
+}-->
 
 </style>
 <body>
-<!--------------------------------------NAVBAR------------------------------------------>
+<?php
+include "homeEnsei.php";
+?>
+<!--------------------------------------NAVBAR------------------------------------------
 <div class="navbar-nav navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -107,15 +90,16 @@ $liste->execute();
             <a href="logOut.php" class="navbar-brand pull-right" ><strong class="fa fa-power-off"> Déconnexion</strong></a>
             <a href="homeEnseignant.php" class="navbar-brand pull-right" ><strong class="fa fa-arrow-circle-o-left"> Retour</strong></a>
         </div>  <!--/.nav-collapse -->
-    </div>
-</div>
+    <!--</div>
+</div>-->
 <!-------------------------------------------liste des thèmes---------------------------------------------------->
-<div class="row justify-content-center">
-<div class="col-10">
-<div align="center">
-    <br/>     <br/>
 
-    <button type="button" name="ajout" id="addcons" class="btn btn-success" onclick="$('#ajoutTheme').modal('show');">
+
+<div class="my-auto" align="center">
+    <h3 class="mb-5">Theme</h3></div>
+
+    <div align="left"><button type="button" name="ajout" id="addcons" class="btn btn-primary" onclick="$('#ajoutTheme').modal('show');">
+
         <i class="fa fa-plus"></i>Ajouter</button>
       
     <br/>
@@ -123,7 +107,8 @@ $liste->execute();
 </div>
 
 <div id="ajoutTheme" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style=" margin-left: -15%;
+    margin-top: 10%;">
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Proposer theme</h3>
@@ -159,14 +144,9 @@ $liste->execute();
 </div>
 
 
+    <div class="container col-md-10">
 
-<div class="resume-item d-flex flex-column flex-md-row mb-5">
-    <!-- col md sm ...-->
-
-    <div class="table-responsive">
-
-        <table id="tableThemes" role="grid" class="table table-striped table-bordered">
-
+        <table id="tableThemes" role="grid" class="table table-bordered">
 
             <thead>
             <tr>
@@ -191,7 +171,7 @@ $liste->execute();
                     <div class="btn-group">
                         <button type="button"
                                 class="btn btn-primary btn-lm dropdown-toggle" data-toggle="dropdown">
-                            Action <span class="caret"></span>
+                            Action
                         </button>
                         <ul class="dropdown-menu" role="menu">
 
@@ -218,9 +198,6 @@ $liste->execute();
 
     </div>
 </div>
-</div>
-</div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src='http://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js'></script>
