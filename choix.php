@@ -31,7 +31,7 @@ else{
 
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
 
-    
+
 
 
 
@@ -65,7 +65,7 @@ else{
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
 
-   
+
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -79,7 +79,7 @@ else{
     <!--<link rel="stylesheet" href="/resources/demos/style.css">--> <!--là on ajoute du css à nos items..-->
     <style>
          body {
-      
+
     background:#fcfcee;
     font-family: 'Open Sans', sans-serif;
 
@@ -89,13 +89,6 @@ else{
       .navbar-nav {
         background-color: #f4e8c1;
       }
-
-
-
-
-
-
-
 
         #sortable1, #sortable2 {
             border: 1px solid #c0c0c0;
